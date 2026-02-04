@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;600;700&family=Playfair+Display+SC:wght@700&display=swap" rel="stylesheet">
 
     <!-- CDN Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,13 +27,16 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#b8860b',
-                        dark: '#1a1a1a',
-                        light: '#f9f9f9'
+                        primary: '#DC2626',
+                        secondary: '#F87171',
+                        cta: '#CA8A04',
+                        'red-50': '#FEF2F2',
+                        'red-950': '#450A0A',
+                        dark: '#1A1A1A'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Karla', 'sans-serif'],
+                        serif: ['Playfair Display SC', 'serif'],
                     }
                 }
             }
@@ -46,29 +49,78 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
+        /* Enhanced micro-animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15);
+        }
+        
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1547928576-a4a33237eceb?auto=format&fit=crop&q=80&w=1920');
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://lh3.googleusercontent.com/p/AF1QipPr3uzO5cummwiiL-yshyye5bxnl7by027D6cxm=w1920');
             background-size: cover;
             background-position: center;
         }
-        .swiper-pagination-bullet-active { background: #b8860b !important; }
-        .active-day { background-color: #b8860b !important; color: white !important; font-weight: bold; border-radius: 0.5rem; }
+        .swiper-pagination-bullet-active { background: #DC2626 !important; }
+        .active-day { background-color: #DC2626 !important; color: white !important; font-weight: bold; border-radius: 0.5rem; }
         
         .swiper-slide { height: auto !important; }
         .review-card { height: 100%; display: flex; flex-direction: column; }
     </style>
 </head>
-<body class="bg-light text-dark overflow-x-hidden">
+<body class="bg-red-50 text-red-950 overflow-x-hidden">
 
     <!-- Navigation Bar -->
     <nav class="absolute top-0 w-full z-50 py-6 px-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-white font-serif text-2xl font-bold tracking-tight">Ortaköy <span class="text-primary italic">Fasulyecisi</span></div>
+            <div class="text-white font-serif text-2xl font-bold tracking-tight">Ortaköy <span class="text-secondary italic">Fasulyecisi</span></div>
             <div class="hidden md:flex gap-8 text-white font-medium uppercase text-sm tracking-widest">
-                <a href="#hakkimizda" class="hover:text-primary transition-colors">Hakkımızda</a>
-                <a href="#galeri" class="hover:text-primary transition-colors">Galeri</a>
-                <a href="#yorumlar" class="hover:text-primary transition-colors">Yorumlar</a>
-                <a href="#iletisim" class="hover:text-primary transition-colors">İletişim</a>
+                <a href="#hakkimizda" class="hover:text-secondary transition-colors">Hakkımızda</a>
+                <a href="#galeri" class="hover:text-secondary transition-colors">Galeri</a>
+                <a href="#yorumlar" class="hover:text-secondary transition-colors">Yorumlar</a>
+                <a href="#iletisim" class="hover:text-secondary transition-colors">İletişim</a>
             </div>
         </div>
     </nav>
@@ -76,19 +128,19 @@
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center text-center px-4 hero-section">
         <div class="max-w-4xl" data-aos="fade-up">
-            <h1 class="font-serif text-5xl md:text-7xl text-white mb-6 tracking-tight leading-tight">Geleneksel <br><span class="text-primary italic">Ortaköy Lezzeti</span></h1>
-            <div class="flex items-center justify-center gap-2 mb-8 text-primary text-xl">
+            <h1 class="font-serif text-6xl md:text-8xl text-white mb-6 tracking-tight leading-tight">Geleneksel <br><span class="text-secondary italic">Ortaköy Lezzeti</span></h1>
+            <div class="flex items-center justify-center gap-2 mb-8 text-secondary text-2xl">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <span class="text-white font-medium ml-2">5.0 Google Puanı</span>
+                <span class="text-white font-semibold ml-3">5.0 Google Puanı</span>
             </div>
-            <p class="text-gray-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed font-light">
+            <p class="text-gray-100 text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed font-light">
                 19. yüzyıldan beri değişmeyen reçete, gerçek Karadeniz tereyağı ve özenle seçilmiş İspir şeker fasulyesi.
             </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="tel:+902120000000" class="bg-primary hover:bg-white hover:text-primary text-white px-10 py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 shadow-xl">
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="tel:+902120000000" class="bg-cta hover:bg-red-600 text-white px-12 py-5 rounded-full font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl text-lg">
                     <i class="fas fa-phone"></i> Hemen Ara
                 </a>
-                <a href="#iletisim" class="bg-white hover:bg-primary hover:text-white text-dark px-10 py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 shadow-xl">
+                <a href="#iletisim" class="bg-white hover:bg-cta text-red-950 px-12 py-5 rounded-full font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl text-lg border-4 border-transparent hover:border-red-200">
                     <i class="fas fa-map-marker-alt"></i> Yol Tarifi Al
                 </a>
             </div>
@@ -96,54 +148,54 @@
     </section>
 
     <!-- About Section -->
-    <section id="hakkimizda" class="py-24 px-4 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
+    <section id="hakkimizda" class="py-32 px-4 max-w-7xl mx-auto bg-red-50">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
             <div data-aos="fade-right">
                 <span class="text-primary font-bold tracking-widest uppercase text-sm">Lezzetin Mirası</span>
-                <h2 class="font-serif text-4xl mt-4 mb-6 leading-tight text-dark">Bir Asırlık <br>Kuru Fasulye Sanatı</h2>
-                <p class="text-gray-600 leading-relaxed mb-8 text-lg">
+                <h2 class="font-serif text-4xl mt-4 mb-8 leading-tight text-red-950">Bir Asırlık <br>Kuru Fasulye Sanatı</h2>
+                <p class="text-red-600 leading-relaxed mb-10 text-lg">
                     Ortaköy'ün tarihi dokusunda, nesiller boyu aktarılan gizli tarifimizle hizmet veriyoruz. İspir'den gelen özel fasulyelerimizi, meşe odunu ateşinde ve hakiki Trabzon tereyağı ile harmanlayarak tam kıvamında sunuyoruz.
                 </p>
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-certificate text-primary text-2xl"></i>
-                        <span class="font-semibold">Orijinal İspir Şeker Fasulyesi</span>
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-lg border-l-4 border-primary transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <i class="fas fa-certificate text-primary text-3xl"></i>
+                        <span class="font-semibold text-red-950">Orijinal İspir Şeker Fasulyesi</span>
                     </div>
-                    <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-fire text-primary text-2xl"></i>
-                        <span class="font-semibold">Meşe Odununda Taş Fırın Lezzeti</span>
+                    <div class="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-lg border-l-4 border-primary transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <i class="fas fa-fire text-primary text-3xl"></i>
+                        <span class="font-semibold text-red-950">Meşe Odununda Taş Fırın Lezzeti</span>
                     </div>
                 </div>
             </div>
             <div class="relative" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1589113103503-49667d898352?auto=format&fit=crop&q=80&w=800" alt="Sıcak Kuru Fasulye Tabağı" class="rounded-3xl shadow-2xl w-full h-[500px] object-cover">
-                <div class="absolute -bottom-6 -left-6 glass-card p-8 rounded-2xl hidden md:block border-l-4 border-primary shadow-2xl">
-                    <p class="text-primary text-4xl font-serif font-bold">1890'dan</p>
-                    <p class="text-sm font-bold uppercase tracking-widest text-dark/70">Günümüze Gelen Lezzet</p>
+                <img src="https://lh3.googleusercontent.com/p/AF1QipPR0wa4ZDiRge4UKjogfYiJnbjTZSke2pfQskNx=w1920" alt="Sıcak Kuru Fasulye Tabağı" class="rounded-3xl shadow-2xl w-full h-[500px] object-cover border-4 border-white">
+                <div class="absolute -bottom-8 -left-8 bg-white p-10 rounded-3xl hidden md:block border-l-4 border-primary shadow-2xl">
+                    <p class="text-primary text-5xl font-serif font-bold mb-2">1890'dan</p>
+                    <p class="text-sm font-bold uppercase tracking-widest text-red-950/80">Günümüze Gelen Lezzet</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="galeri" class="py-20 bg-dark text-white overflow-hidden">
+    <section id="galeri" class="py-24 bg-dark text-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-primary font-bold tracking-[0.2em] uppercase text-xs">Görsel Bir Şölen</span>
-                <h2 class="font-serif text-4xl mt-2">Mutfaktan Kareler</h2>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="text-secondary font-bold tracking-[0.3em] uppercase text-sm">Görsel Bir Şölen</span>
+                <h2 class="font-serif text-5xl mt-4">Mutfaktan Kareler</h2>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="gallery-container">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8" id="gallery-container">
                 <!-- Javascript will populate this -->
             </div>
         </div>
     </section>
 
     <!-- Testimonials Slider -->
-    <section id="yorumlar" class="py-24 bg-white">
+    <section id="yorumlar" class="py-32 bg-white">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-serif text-4xl mb-4 italic">Misafirlerimizin Kaleminden</h2>
-                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="font-serif text-5xl mb-6">Misafirlerimizin Kaleminden</h2>
+                <div class="w-32 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper" id="reviews-container">
@@ -155,28 +207,28 @@
     </section>
 
     <!-- Contact & Map Section -->
-    <section id="iletisim" class="py-24 px-4 bg-light">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-            <div data-aos="fade-right" class="space-y-8">
-                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-                    <div class="bg-primary p-6 text-center text-white font-serif text-2xl italic">Çalışma Saatleri</div>
-                    <div class="p-8" id="hours-table">
+    <section id="iletisim" class="py-32 px-4 bg-red-50">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+            <div data-aos="fade-right" class="space-y-10">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-primary/20">
+                    <div class="bg-primary p-8 text-center text-white font-serif text-3xl">Çalışma Saatleri</div>
+                    <div class="p-10" id="hours-table">
                         <!-- Javascript will populate this -->
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
-                    <h3 class="font-serif text-2xl mb-6 text-dark">Bize Ulaşın</h3>
-                    <div class="space-y-4">
+                <div class="bg-white p-10 rounded-3xl shadow-2xl border-4 border-primary/20">
+                    <h3 class="font-serif text-3xl mb-8 text-red-950">Bize Ulaşın</h3>
+                    <div class="space-y-6">
                         <div class="flex items-start gap-4">
-                            <i class="fas fa-map-marker-alt text-primary mt-1 w-6"></i>
-                            <span class="text-gray-600">Mecidiye Köprüsü Sokak No:1, Ortaköy, Beşiktaş, İstanbul</span>
+                            <i class="fas fa-map-marker-alt text-primary mt-1 w-8 text-xl"></i>
+                            <span class="text-red-700 text-lg">Mecidiye Köprüsü Sokak No:1, Ortaköy, Beşiktaş, İstanbul</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <i class="fas fa-phone text-primary w-6"></i>
-                            <a href="tel:+902120000000" class="text-gray-600 hover:text-primary transition-colors font-semibold">+90 (212) 000 00 00</a>
+                            <i class="fas fa-phone text-primary w-8 text-xl"></i>
+                            <a href="tel:+902120000000" class="text-red-700 hover:text-primary transition-colors font-bold text-lg">+90 (212) 000 00 00</a>
                         </div>
                     </div>
-                    <a href="https://wa.me/902120000000" target="_blank" class="mt-8 flex items-center justify-center gap-2 bg-[#25D366] text-white py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300">
+                    <a href="https://wa.me/902120000000" target="_blank" class="mt-10 flex items-center justify-center gap-3 bg-[#25D366] text-white py-5 rounded-2xl font-bold shadow-xl hover:scale-105 transition-transform duration-300 text-lg">
                         <i class="fab fa-whatsapp text-2xl"></i> WhatsApp'tan Yazın
                     </a>
                 </div>
@@ -196,15 +248,15 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-dark text-white text-center">
+    <footer class="py-16 bg-dark text-white text-center">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="font-serif text-3xl mb-4 font-bold">Ortaköy <span class="text-primary italic">Fasulyecisi</span></div>
-            <div class="flex justify-center gap-6 mb-8 text-gray-400">
-                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-instagram text-xl"></i></a>
-                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-facebook text-xl"></i></a>
-                <a href="#" class="hover:text-primary transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+            <div class="font-serif text-4xl mb-6 font-bold">Ortaköy <span class="text-secondary italic">Fasulyecisi</span></div>
+            <div class="flex justify-center gap-8 mb-10 text-gray-400">
+                <a href="#" class="hover:text-secondary transition-colors transform hover:scale-110"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="#" class="hover:text-secondary transition-colors transform hover:scale-110"><i class="fab fa-facebook text-2xl"></i></a>
+                <a href="#" class="hover:text-secondary transition-colors transform hover:scale-110"><i class="fab fa-twitter text-2xl"></i></a>
             </div>
-            <p class="text-gray-500 text-sm">© 2026 Tarihi Ortaköy Kuru Fasulyecisi. Tüm Hakları Saklıdır.</p>
+            <p class="text-gray-500 text-base">© 2026 Tarihi Ortaköy Kuru Fasulyecisi. Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
 
@@ -222,10 +274,10 @@
 
         const businessData = {
             galleryPhotos: [
-                "https://images.unsplash.com/photo-1547928576-a4a33237eceb?auto=format&fit=crop&w=800",
-                "https://images.unsplash.com/photo-1589113103503-49667d898352?auto=format&fit=crop&w=800",
-                "https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?auto=format&fit=crop&w=800",
-                "https://images.unsplash.com/photo-1594221708779-94822f4335d4?auto=format&fit=crop&w=800"
+                "https://lh3.googleusercontent.com/p/AF1QipNsOn-y5o5NvQ1bi0RHBU_kP57B4HVXQNHRT-iq=w800",
+                "https://lh3.googleusercontent.com/p/AF1QipN6E0sUIwvNuB_Sk3SpA1BD7jhF-ngmRn6fbCdG=w800",
+                "https://lh3.googleusercontent.com/p/AF1QipNP2CBqbimslxZxsh7KbjQQWvmtR8s8wCDSTJ14=w800",
+                "https://lh3.googleusercontent.com/p/AF1QipPr3uzO5cummwiiL-yshyye5bxnl7by027D6cxm=w800"
             ],
             hours: [
                 { day: "Hafta İçi", time: "10:00 - 22:00" },
@@ -242,9 +294,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Animations
             AOS.init({ 
-                duration: 1000, 
+                duration: 1200, 
                 once: true,
-                offset: 100
+                offset: 150,
+                mirror: true,
+                anchorPlacement: 'top-bottom'
             });
             
             // Map Setup
@@ -257,9 +311,15 @@
             const galleryEl = document.getElementById('gallery-container');
             if (galleryEl) {
                 galleryEl.innerHTML = businessData.galleryPhotos.map(p => `
-                    <div class="group relative rounded-2xl overflow-hidden h-64 shadow-xl border border-white/5" data-aos="zoom-in">
-                        <img src="${p}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="group relative rounded-3xl overflow-hidden h-72 shadow-2xl border-4 border-white transition-all duration-700 hover:scale-105" data-aos="zoom-in">
+                        <img src="${p}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="bg-white/20 backdrop-blur-md rounded-full px-4 py-2 text-center">
+                                    <p class="text-white text-sm font-semibold">Lezzetin Anı</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `).join('');
             }
@@ -269,14 +329,14 @@
             if (reviewsEl) {
                 reviewsEl.innerHTML = businessData.reviews.map(rev => `
                     <div class="swiper-slide h-full">
-                        <div class="review-card bg-light p-8 rounded-3xl border border-gray-100 shadow-sm text-center">
-                            <img src="${rev.authorPhoto}" class="w-20 h-20 rounded-full mx-auto mb-6 border-4 border-primary/20 shadow-md" alt="${rev.author}">
-                            <div class="text-primary text-sm mb-4">
-                                ${Array(rev.rating).fill('<i class="fas fa-star mx-0.5"></i>').join('')}
+                        <div class="review-card bg-red-50 p-10 rounded-3xl border-4 border-primary/20 shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:border-primary/40">
+                            <img src="${rev.authorPhoto}" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-primary shadow-lg" alt="${rev.author}">
+                            <div class="text-cta text-xl mb-6">
+                                ${Array(rev.rating).fill('<i class="fas fa-star mx-1"></i>').join('')}
                             </div>
-                            <p class="text-gray-600 italic mb-6 leading-relaxed flex-grow">"${rev.text}"</p>
-                            <h4 class="font-bold text-dark text-lg">${rev.author}</h4>
-                            <p class="text-xs text-gray-400 mt-1 uppercase tracking-tighter">Google Yerel Rehber</p>
+                            <p class="text-red-700 italic mb-8 leading-relaxed flex-grow text-lg">"${rev.text}"</p>
+                            <h4 class="font-bold text-red-950 text-xl">${rev.author}</h4>
+                            <p class="text-sm text-red-600 mt-2 uppercase tracking-wider font-semibold">Google Yerel Rehber</p>
                         </div>
                     </div>
                 `).join('');
@@ -286,9 +346,9 @@
             const hoursEl = document.getElementById('hours-table');
             if (hoursEl) {
                 hoursEl.innerHTML = businessData.hours.map(h => `
-                    <div class="flex justify-between py-5 border-b border-gray-50 last:border-0 hover:bg-gray-50/50 px-2 transition-colors rounded-lg">
-                        <span class="text-gray-600 font-medium">${h.day}</span>
-                        <span class="font-bold text-dark">${h.time}</span>
+                    <div class="flex justify-between py-6 border-b-2 border-red-50 last:border-0 hover:bg-red-100/50 px-4 transition-colors rounded-lg">
+                        <span class="text-red-700 font-semibold text-lg">${h.day}</span>
+                        <span class="font-bold text-red-950 text-lg">${h.time}</span>
                     </div>
                 `).join('');
             }
